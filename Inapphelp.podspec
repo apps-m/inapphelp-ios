@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Inapphelp"
-  s.version          = "0.0.1"
+  s.version          = "0.0.2"
   s.summary          = "In-app customer support framework for inapphelp.com help desk"
   s.description      = 'See inapphelp.io for more details'
   s.homepage         = "https://github.com/apps-m/inapphelp-ios"
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Apps-m" => "ios@inapphelp.com" }
   s.platform         = :ios, '7.0'
-  s.source           = { :git => "https://github.com/apps-m/inapphelp-ios.git", :tag => "0.0.1", :submodules => true }
+  s.source           = { :git => "https://github.com/apps-m/inapphelp-ios.git", :tag => "0.0.2", :submodules => true }
   s.resources        = ['Resources/*.png','Resources/*.storyboard']
   s.dependency         'AFNetworking', '~> 2.0'
   s.dependency         'JCNotificationBannerPresenter', '~> 1.1.2'
