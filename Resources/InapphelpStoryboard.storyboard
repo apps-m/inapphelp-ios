@@ -338,7 +338,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxc-PN-oSd" userLabel="MessageView">
                                 <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DX-py-x4b" customClass="HSButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DX-py-x4b" customClass="IAHButton">
                                         <rect key="frame" x="327" y="7" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="VEd-GX-VW4"/>
@@ -394,7 +394,7 @@
                                     <constraint firstItem="caF-bA-v3Y" firstAttribute="top" secondItem="vxc-PN-oSd" secondAttribute="top" constant="5" id="zPt-ry-Qmw"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Zs-2i-DGZ" customClass="HSActivityIndicatorView">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Zs-2i-DGZ" customClass="IAHActivityIndicatorView">
                                 <rect key="frame" x="178" y="270" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="hTG-iv-gdC"/>
@@ -796,6 +796,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5du-Et-kqi"/>
-        <segue reference="pJ2-BK-t6r"/>
+        <segue reference="quN-14-czE"/>
     </inferredMetricsTieBreakers>
 </document>
