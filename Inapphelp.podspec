@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Inapphelp"
-  s.version          = "0.0.3"
+  s.version          = "0.0.4"
   s.summary          = "In-app customer support framework"
   s.description      = 'In-app customer support framework for inapphelp.com help desk. See inapphelp.io for more details'
   s.homepage         = "https://github.com/apps-m/inapphelp-ios"
