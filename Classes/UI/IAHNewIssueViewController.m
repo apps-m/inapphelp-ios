@@ -184,7 +184,7 @@
             float messageHeight;
             //Instead, get the keyboard height and calculate the message field height
             UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-            if (UIDeviceOrientationIsLandscape(orientation))
+            if (UIInterfaceOrientationIsLandscape(orientation))
             {
                 messageHeight = 68.0;
             }
