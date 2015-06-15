@@ -25,16 +25,9 @@ Pod::Spec.new do |s|
     ss.source_files  = 'Classes/Core/*.{h,m}'
   end
 
-  s.subspec 'Stacks' do |ss|
-    ss.dependency 'Inapphelp/Util'
-    ss.dependency 'Inapphelp/Core'
-    ss.source_files  = 'Classes/Stacks/**/*.{h,m}'
-  end
-
   s.subspec 'UI' do |ss|
     ss.dependency 'Inapphelp/Util'
     ss.dependency 'Inapphelp/Core'
-    ss.dependency 'Inapphelp/Stacks'
     ss.source_files = 'Classes/UI/*.{h,m}'
   end
 
