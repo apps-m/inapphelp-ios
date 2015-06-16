@@ -125,11 +125,11 @@
 
 - (void)prepareUpdate:(IAHUser *)user success:(void (^)(void))success failure:(void (^)(NSError *))failure {
     // Preparing update array for new ticket, dumping array for old ticket
-    long from;
+    long long from;
     if ([self updateCount] > 0){
         from = [((IAHUpdate*)[self.updateArray lastObject]) updatedId];
     } else {
-        from = 0l;
+        from = 0ll;
         self.updateArray = [[NSMutableArray alloc] init];
     }
     
@@ -157,7 +157,7 @@
     return update;
 }
 
-- (void)addReply:(IAHTicketReply *)details byUser:(IAHUser *)user getUpdatesFromTime:(long)time success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)addReply:(IAHTicketReply *)details byUser:(IAHUser *)user getUpdatesFromTime:(long long)time success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // Checking if gear implements addReply:ticket:success:failure:
     __block NSMutableArray* updates = self.updateArray;

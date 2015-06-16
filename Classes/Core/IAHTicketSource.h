@@ -56,7 +56,7 @@
 - (void)setPushToken:(NSString *)pushToken;
 
 // Add reply on ticket
-- (void)addReply:(IAHTicketReply *)details byUser:(IAHUser *)user getUpdatesFromTime:(long)time success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)addReply:(IAHTicketReply *)details byUser:(IAHUser *)user getUpdatesFromTime:(long long)time success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
 
 // Ticket Protocol properties

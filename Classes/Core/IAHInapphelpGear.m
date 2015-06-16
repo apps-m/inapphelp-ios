@@ -61,12 +61,12 @@
 }
 
 
-- (void)fetchAllUpdateForUser:(IAHUser *)user fromTime:(long)time success:(void (^)(NSMutableArray* updateArray))success failure:(void (^)(NSError* e))failure {
+- (void)fetchAllUpdateForUser:(IAHUser *)user fromTime:(long long)time success:(void (^)(NSMutableArray* updateArray))success failure:(void (^)(NSError* e))failure {
     NSString *path = @"api/chat/updates";
     
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:user.name forKey:@"name"];
-    [parameters setObject:[NSString stringWithFormat:@"%ld", time] forKey:@"time"];
+    [parameters setObject:[NSString stringWithFormat:@"%lld", time] forKey:@"time"];
     [parameters setObject:self.app_id forKey:@"appid"];
     [parameters setObject:self.app_key forKey:@"appkey"];
 
@@ -125,11 +125,11 @@
     return tickUpdates;
 }
 
-- (void)addReply:(IAHTicketReply *)reply byUser:(IAHUser *)user getUpdatesFromTime:(long)time success:(void (^)(NSMutableArray* update))success failure:(void (^)(NSError* e))failure {
+- (void)addReply:(IAHTicketReply *)reply byUser:(IAHUser *)user getUpdatesFromTime:(long long)time success:(void (^)(NSMutableArray* update))success failure:(void (^)(NSError* e))failure {
 
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:user.name forKey:@"name"];
-    [parameters setObject:[NSString stringWithFormat:@"%ld", time] forKey:@"time"];
+    [parameters setObject:[NSString stringWithFormat:@"%lld", time] forKey:@"time"];
     [parameters setObject:user.email forKey:@"email"];
     [parameters setObject:@"ios" forKey:@"platform"];
     [parameters setObject:self.app_id forKey:@"appid"];

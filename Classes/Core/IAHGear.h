@@ -89,7 +89,7 @@
     @return array of HSUpdate object when operation is success
  
  */
-- (void)fetchAllUpdateForUser:(IAHUser *)user fromTime:(long)time success:(void (^)(NSMutableArray* updateArray))success failure:(void (^)(NSError* e))failure;
+- (void)fetchAllUpdateForUser:(IAHUser *)user fromTime:(long long)time success:(void (^)(NSMutableArray* updateArray))success failure:(void (^)(NSError* e))failure;
 
 ///------------------------------------------
 /// @name Add reply to a ticket
@@ -104,7 +104,7 @@
 
  @return update object when operation is success
  */
-- (void)addReply:(IAHTicketReply *)reply byUser:(IAHUser *)user getUpdatesFromTime:(long) time success:(void (^)(NSMutableArray* updateArray))success failure:(void (^)(NSError* e))failure;
+- (void)addReply:(IAHTicketReply *)reply byUser:(IAHUser *)user getUpdatesFromTime:(long long) time success:(void (^)(NSMutableArray* updateArray))success failure:(void (^)(NSError* e))failure;
 
 
 

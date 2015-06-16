@@ -34,15 +34,12 @@
 
 + (instancetype)createInstance {
     IAHGear* gear = [[IAHHelpDesk instance] gear];
-    NSAssert (gear != nil, @"No gear was set to HSHelpStack");
+    NSAssert (gear != nil, @"No gear was set to IAHHelpDesk");
     IAHKBSource* source = [[IAHKBSource alloc] initWithGear:gear];
     return source;
 }
 
 
-/**
-    Set HAGear, so its method can be called.
- */
 -(id)initWithGear:(IAHGear*)gear {
     if(self = [super init]) {
         self.gear = gear;
