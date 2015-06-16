@@ -57,7 +57,7 @@
 
 - (void)setUserId:(NSString *)userId;
 - (void)setUserSecret:(NSString *)userSecret;
-- (void)setPushToken:(NSString *)pushToken;
+- (void)setPushToken:(NSData *)pushToken;
 
 - (NSString*) getCompanyName;
 

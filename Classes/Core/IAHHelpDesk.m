@@ -70,8 +70,16 @@
     return nil;
 }
 
-- (void)setPushToken:(NSString *)pushToken {
-    self.localPushToken = pushToken;
+- (void)setPushToken:(NSData *)pushToken {
+    
+    NSUInteger dataLength = [pushToken length];
+    NSMutableString *string = [NSMutableString stringWithCapacity:dataLength*2];
+    const unsigned char *dataBytes = [pushToken bytes];
+    for (NSInteger idx = 0; idx < dataLength; ++idx) {
+        [string appendFormat:@"%02x", dataBytes[idx]];
+    }
+
+    self.localPushToken = string;
     if (self.gear!= nil)
         [[IAHTicketSource instance] setPushToken:pushToken];
 }

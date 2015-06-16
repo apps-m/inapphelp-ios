@@ -31,7 +31,7 @@ typedef NS_OPTIONS(NSUInteger, HAUpdateType) {
 @property(nonatomic, strong) NSString* from;
 @property(nonatomic, strong) NSString* content;
 @property(nonatomic, strong) NSDate* updatedAt;
-@property(nonatomic) long updatedId;
+@property(nonatomic) long long updatedId;
 @property(nonatomic) HAUpdateType updateType;
 
 //optional

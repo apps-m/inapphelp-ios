@@ -100,9 +100,9 @@
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
             [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-            long ts =[[updateDict objectForKey:@"ts"] longValue];
+            long long ts =[[updateDict objectForKey:@"ts"] longLongValue];
             tick_update.updatedId = ts;
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:(int)(ts/1000)];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:(long long)(ts/1000)];
             tick_update.updatedAt = date;
             NSString *type = [updateDict objectForKey:@"s"];
             if(type == nil) {
