@@ -33,6 +33,7 @@
 @synthesize placeholder;
 @synthesize placeholderColor;
 @synthesize displayPlaceHolder;
+@synthesize placeholderLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -61,11 +62,10 @@
     if ([[self placeholder] length]==0)
         return;
     if ([[self text] length]==0) {
-        [[self viewWithTag:999] setAlpha:1];
+        [self.placeholderLabel setAlpha:1];
     } else {
-        [[self viewWithTag:999] setAlpha:0];
+        [self.placeholderLabel setAlpha:0];
     }
-    
 }
 
 - (void)setScrollable:(BOOL)isScrollable
@@ -126,15 +126,16 @@
     [super drawRect:rect];
     [[[IAHHelpDesk instance] appearance] customizeTextView:self];
     if (displayPlaceHolder && placeholder && placeholderColor && self.text.length == 0) {
-        UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 0, 0)];
-        [l setFont:self.font];
-        [l setTextColor:self.placeholderColor];
-        [l setText:self.placeholder];
-        [l setAlpha:1];
-        [l setTag:999];
-        [self addSubview:l];
-        [l sizeToFit];
-        [self sendSubviewToBack:l];
+        [self.placeholderLabel removeFromSuperview];
+        self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 0, 0)];
+        [self.placeholderLabel setFont:self.font];
+        [self.placeholderLabel setTextColor:self.placeholderColor];
+        [self.placeholderLabel setText:self.placeholder];
+        [self.placeholderLabel setAlpha:1];
+        [self.placeholderLabel setTag:999];
+        [self addSubview:self.placeholderLabel];
+        [self.placeholderLabel sizeToFit];
+        [self sendSubviewToBack:self.placeholderLabel];
     }
 }
 

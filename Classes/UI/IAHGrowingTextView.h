@@ -26,6 +26,7 @@
 //	THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "IAHTextViewInternal.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
 	// UITextAlignment is deprecated in iOS 6.0+, use NSTextAlignment instead.
@@ -34,7 +35,6 @@
 #endif
 
 @class IAHGrowingTextView;
-@class IAHTextViewInternal;
 
 @protocol HPGrowingTextViewDelegate
 
@@ -57,7 +57,7 @@
 @end
 
 @interface IAHGrowingTextView : UIView <UITextViewDelegate> {
-	IAHTextViewInternal *internalTextView;	
+	IAHTextViewInternal *internalTextView;
 	
 	int minHeight;
 	int maxHeight;

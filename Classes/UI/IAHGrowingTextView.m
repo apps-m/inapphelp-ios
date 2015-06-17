@@ -237,6 +237,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    [internalTextView textChanged:nil];
     [self refreshHeight];
 }
 

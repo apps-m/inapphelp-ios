@@ -34,6 +34,7 @@
 @property (nonatomic, strong) NSString *placeholder;
 @property (nonatomic, strong) UIColor *placeholderColor;
 @property (nonatomic) BOOL displayPlaceHolder;
+@property UILabel* placeholderLabel;
 
 - (void)setPlaceholder:(NSString *)placeholder;
 - (void)textChanged:(NSNotification*)notification;
