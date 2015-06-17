@@ -335,72 +335,6 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxc-PN-oSd" userLabel="MessageView">
-                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DX-py-x4b" customClass="IAHButton">
-                                        <rect key="frame" x="327" y="7" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="VEd-GX-VW4"/>
-                                            <constraint firstAttribute="width" constant="46" id="r9t-s2-xzs"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Send">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendReply:" destination="Gtj-gW-pLJ" eventType="touchUpInside" id="F6q-cx-KuV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szx-vb-Fom">
-                                        <rect key="frame" x="4" y="7" width="24" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="29" id="RL7-HP-9I7"/>
-                                            <constraint firstAttribute="width" constant="24" id="d6k-5b-awk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                        <state key="normal" image="attach.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addAttachment:" destination="Gtj-gW-pLJ" eventType="touchUpInside" id="daI-W2-zVl"/>
-                                        </connections>
-                                    </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wxK-OQ-di3">
-                                        <rect key="frame" x="340" y="12" width="20" height="20"/>
-                                    </activityIndicatorView>
-                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caF-bA-v3Y" userLabel="growingmessageview">
-                                        <rect key="frame" x="43" y="5" width="281" height="34"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="900" constant="34" id="cTJ-IJ-qYt"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.89474354619565222" green="0.89474354619565222" blue="0.89474354619565222" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="1DX-py-x4b" firstAttribute="centerX" secondItem="wxK-OQ-di3" secondAttribute="centerX" id="2Re-6B-i6d"/>
-                                    <constraint firstAttribute="bottom" secondItem="Szx-vb-Fom" secondAttribute="bottom" constant="8" id="2r7-YI-MDy"/>
-                                    <constraint firstAttribute="trailing" secondItem="caF-bA-v3Y" secondAttribute="trailing" constant="51" id="5QG-Qv-bjr"/>
-                                    <constraint firstItem="Szx-vb-Fom" firstAttribute="leading" secondItem="vxc-PN-oSd" secondAttribute="leading" constant="4" id="A81-SU-VLF"/>
-                                    <constraint firstItem="caF-bA-v3Y" firstAttribute="leading" secondItem="vxc-PN-oSd" secondAttribute="leading" constant="43" id="Daa-Xd-a3h"/>
-                                    <constraint firstAttribute="bottom" secondItem="caF-bA-v3Y" secondAttribute="bottom" constant="5" id="HYF-Iy-zHw"/>
-                                    <constraint firstItem="caF-bA-v3Y" firstAttribute="leading" secondItem="Szx-vb-Fom" secondAttribute="trailing" constant="15" id="L2g-uG-5mh"/>
-                                    <constraint firstItem="1DX-py-x4b" firstAttribute="centerY" secondItem="wxK-OQ-di3" secondAttribute="centerY" id="MDf-ve-sna"/>
-                                    <constraint firstAttribute="height" priority="900" constant="44" id="SfT-f9-IsY"/>
-                                    <constraint firstAttribute="trailing" secondItem="1DX-py-x4b" secondAttribute="trailing" constant="2" id="bbr-TW-3Zn"/>
-                                    <constraint firstAttribute="bottom" secondItem="1DX-py-x4b" secondAttribute="bottom" constant="7" id="sC2-Rz-kwG"/>
-                                    <constraint firstItem="caF-bA-v3Y" firstAttribute="top" secondItem="vxc-PN-oSd" secondAttribute="top" constant="5" id="zPt-ry-Qmw"/>
-                                </constraints>
-                            </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Zs-2i-DGZ" customClass="IAHActivityIndicatorView">
-                                <rect key="frame" x="178" y="270" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="hTG-iv-gdC"/>
-                                    <constraint firstAttribute="width" constant="20" id="vCh-ob-aDi"/>
-                                </constraints>
-                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="91" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="TW8-Xg-jkl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -609,6 +543,72 @@
                                     <outlet property="delegate" destination="Gtj-gW-pLJ" id="lBR-sa-0OR"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxc-PN-oSd" userLabel="MessageView">
+                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DX-py-x4b" customClass="IAHButton">
+                                        <rect key="frame" x="327" y="7" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="VEd-GX-VW4"/>
+                                            <constraint firstAttribute="width" constant="46" id="r9t-s2-xzs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendReply:" destination="Gtj-gW-pLJ" eventType="touchUpInside" id="F6q-cx-KuV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szx-vb-Fom">
+                                        <rect key="frame" x="4" y="7" width="24" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="RL7-HP-9I7"/>
+                                            <constraint firstAttribute="width" constant="24" id="d6k-5b-awk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <state key="normal" image="attach.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addAttachment:" destination="Gtj-gW-pLJ" eventType="touchUpInside" id="daI-W2-zVl"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wxK-OQ-di3">
+                                        <rect key="frame" x="340" y="12" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caF-bA-v3Y" userLabel="growingmessageview">
+                                        <rect key="frame" x="43" y="5" width="281" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="900" constant="34" id="cTJ-IJ-qYt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.89474354619565222" green="0.89474354619565222" blue="0.89474354619565222" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1DX-py-x4b" firstAttribute="centerX" secondItem="wxK-OQ-di3" secondAttribute="centerX" id="2Re-6B-i6d"/>
+                                    <constraint firstAttribute="bottom" secondItem="Szx-vb-Fom" secondAttribute="bottom" constant="8" id="2r7-YI-MDy"/>
+                                    <constraint firstAttribute="trailing" secondItem="caF-bA-v3Y" secondAttribute="trailing" constant="51" id="5QG-Qv-bjr"/>
+                                    <constraint firstItem="Szx-vb-Fom" firstAttribute="leading" secondItem="vxc-PN-oSd" secondAttribute="leading" constant="4" id="A81-SU-VLF"/>
+                                    <constraint firstItem="caF-bA-v3Y" firstAttribute="leading" secondItem="vxc-PN-oSd" secondAttribute="leading" constant="43" id="Daa-Xd-a3h"/>
+                                    <constraint firstAttribute="bottom" secondItem="caF-bA-v3Y" secondAttribute="bottom" constant="5" id="HYF-Iy-zHw"/>
+                                    <constraint firstItem="caF-bA-v3Y" firstAttribute="leading" secondItem="Szx-vb-Fom" secondAttribute="trailing" constant="15" id="L2g-uG-5mh"/>
+                                    <constraint firstItem="1DX-py-x4b" firstAttribute="centerY" secondItem="wxK-OQ-di3" secondAttribute="centerY" id="MDf-ve-sna"/>
+                                    <constraint firstAttribute="height" priority="900" constant="44" id="SfT-f9-IsY"/>
+                                    <constraint firstAttribute="trailing" secondItem="1DX-py-x4b" secondAttribute="trailing" constant="2" id="bbr-TW-3Zn"/>
+                                    <constraint firstAttribute="bottom" secondItem="1DX-py-x4b" secondAttribute="bottom" constant="7" id="sC2-Rz-kwG"/>
+                                    <constraint firstItem="caF-bA-v3Y" firstAttribute="top" secondItem="vxc-PN-oSd" secondAttribute="top" constant="5" id="zPt-ry-Qmw"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Zs-2i-DGZ" customClass="IAHActivityIndicatorView">
+                                <rect key="frame" x="178" y="270" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="hTG-iv-gdC"/>
+                                    <constraint firstAttribute="width" constant="20" id="vCh-ob-aDi"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -633,6 +633,7 @@
                         <outlet property="chatTableView" destination="TW8-Xg-jkl" id="FwU-tx-vtC"/>
                         <outlet property="loadingIndicator" destination="7Zs-2i-DGZ" id="QkO-kM-wOr"/>
                         <outlet property="messageTextSuperView" destination="caF-bA-v3Y" id="SlY-8I-YYR"/>
+                        <outlet property="messageViewConstraint" destination="d4H-zu-c8U" id="olf-T8-Bht"/>
                         <outlet property="sendButton" destination="1DX-py-x4b" id="1ev-c0-WRK"/>
                         <outlet property="sendReplyIndicator" destination="wxK-OQ-di3" id="jFd-bw-v3t"/>
                         <segue destination="wuj-rX-nEg" kind="push" identifier="showAttachments" id="Mak-O6-IY5"/>

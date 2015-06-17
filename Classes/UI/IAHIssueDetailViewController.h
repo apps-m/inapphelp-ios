@@ -46,6 +46,7 @@
 @property (strong, nonatomic) IBOutlet IAHGrowingTextView *messageText;
 @property (weak, nonatomic) IBOutlet UIView *messageTextSuperView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *messageViewConstraint;
 
 - (IBAction)sendReply:(id)sender;
 - (IBAction)addAttachment:(id)sender;

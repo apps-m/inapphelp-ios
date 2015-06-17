@@ -113,7 +113,6 @@
 #pragma marks - View populating methods
 
 - (void)addMessageView {
-    //self.messageText = [[HPGrowingTextView alloc] initWithFrame:CGRectMake(35, 6, self.messageTextSuperView.frame.size.width, 40)];
     if(!self.messageText){
         self.messageText = [[IAHGrowingTextView alloc] initWithFrame:CGRectMake(self.messageTextSuperView.frame.origin.x, self.messageTextSuperView.frame.origin.y, self.messageTextSuperView.frame.size.width, self.messageTextSuperView.frame.size.height)];
         self.messageText.editable = YES;
@@ -145,7 +144,6 @@
     self.messageText.textColor = [UIColor darkGrayColor];
     self.messageText.placeholder = @"Reply here";
     self.messageText.internalTextView.layer.cornerRadius = 5.0;
-  //  [self.messageTextSuperView addSubview:self.messageText];
     [self.messageText removeFromSuperview];
     [self.bottomMessageView addSubview:self.messageText];
     
@@ -176,7 +174,10 @@
 }
 
 -(void)growingTextViewDidChange:(IAHGrowingTextView *)growingTextView{
-   
+ 
+    IAHTextViewInternal* textView =(IAHTextViewInternal*)self.messageText.internalTextView;
+    [textView textChanged:nil];
+    
     if([growingTextView.text stringByReplacingOccurrencesOfString:@" " withString:@""].length > 0){
         self.sendButton.enabled = YES;
         self.sendButton.alpha = 1.0;
@@ -351,107 +352,129 @@
 }
 
 #pragma mark - Keyboard functions
+#pragma mark - keyboard movements
+- (void)keyboardFrameWillChange:(NSNotification *)notification
+{
+    NSDictionary* info = [notification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.messageViewConstraint.constant = 0.0f + kbSize.height;
+                         [self.view layoutIfNeeded];
+                     }];
+}
 
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.messageViewConstraint.constant = 0.0f;
+                         [self.view layoutIfNeeded];
+                     }];
+    
+}
+
+//
 - (void)hideKeyboard{
     [self.messageText resignFirstResponder];
 }
-
-
-/**
-    On keyboard Hide, restore the tableview and messageTextView frames
- */
--(void) keyboardWillHide:(NSNotification *)note{
-    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-	
-    CGRect keyboardBounds;
-    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
-    
-    // Need to translate the bounds to account for rotation.
-    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
-    
-	// get a rect for the textView frame
-	CGRect containerFrame = self.bottomMessageView.frame;
-    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.chatTableView.contentInset = contentInsets;
-    self.chatTableView.scrollIndicatorInsets = contentInsets;
-	
-	// animations settings
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-    
-	// set views with new info
-	self.bottomMessageView.frame = containerFrame;
-	
-	// commit animations
-	[UIView commitAnimations];
-}
-
-- (void)keyboardFrameWillChange: (NSNotification *)notification {
-
-    NSDictionary* info = [notification userInfo];
-    NSNumber *duration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-
-    CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-
-    // get a rect for the textView frame
-    CGRect containerFrame = self.bottomMessageView.frame;
-
-    float originalMessageOrigin = containerFrame.origin.y;
-    
-    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
-    {
-        containerFrame.origin.y = kKeyBoardFrame.origin.y - containerFrame.size.height - 64;
-    }
-    else {
-        // On ios 7 landscape x == ios 8 landscape y
+//
+//
+///**
+//    On keyboard Hide, restore the tableview and messageTextView frames
+// */
+//-(void) keyboardWillHide:(NSNotification *)note{
+//    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+//	
+//    CGRect keyboardBounds;
+//    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+//    
+//    // Need to translate the bounds to account for rotation.
+//    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
+//    
+//	// get a rect for the textView frame
+//	CGRect containerFrame = self.bottomMessageView.frame;
+//    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
+//    
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    self.chatTableView.contentInset = contentInsets;
+//    self.chatTableView.scrollIndicatorInsets = contentInsets;
+//	
+//	// animations settings
+//	[UIView beginAnimations:nil context:NULL];
+//	[UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:[duration doubleValue]];
+//    [UIView setAnimationCurve:[curve intValue]];
+//    
+//	// set views with new info
+//	self.bottomMessageView.frame = containerFrame;
+//	
+//	// commit animations
+//	[UIView commitAnimations];
+//}
+//
+//- (void)keyboardFrameWillChange: (NSNotification *)notification {
+//
+//    NSDictionary* info = [notification userInfo];
+//    NSNumber *duration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    NSNumber *curve = [notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+//
+//    CGRect kKeyBoardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//
+//    // get a rect for the textView frame
+//    CGRect containerFrame = self.bottomMessageView.frame;
+//
+//    float originalMessageOrigin = containerFrame.origin.y;
+//    
+//    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+//    {
+//        containerFrame.origin.y = kKeyBoardFrame.origin.y - containerFrame.size.height - 64;
+//    }
+//    else {
+//        // On ios 7 landscape x == ios 8 landscape y
 //        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-            containerFrame.origin.y = kKeyBoardFrame.origin.y - containerFrame.size.height - 56;
+//            containerFrame.origin.y = kKeyBoardFrame.origin.y - containerFrame.size.height - 56;
 //        }
 //        else {
 //            containerFrame.origin.y = kKeyBoardFrame.origin.x - containerFrame.size.height - 50;
 //        }
-    }
-
-    NSInteger keyboardHeightDiff = containerFrame.origin.y - originalMessageOrigin;
-
-    UIEdgeInsets contentInsets = self.chatTableView.contentInset;
-
-    // On ios 7 landscape x == ios 8 landscape y
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0 && UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        if(kKeyBoardFrame.origin.x > 0) {
-            contentInsets.bottom-=keyboardHeightDiff;
-        }
-    }
-    else {
-        if(kKeyBoardFrame.origin.y > 0) {
-            contentInsets.bottom-=keyboardHeightDiff;
-        }
-    }
-    
-    self.bottomMessageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.bottomMessageView.translatesAutoresizingMaskIntoConstraints = YES;
-
-    self.chatTableView.contentInset = contentInsets;
-    self.chatTableView.scrollIndicatorInsets = contentInsets;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-
-    // set views with new info
-    self.bottomMessageView.frame = containerFrame;
-
-    [UIView commitAnimations];
-    [self scrollDownToLastMessage:YES];
-    
-}
+//    }
+//
+//    NSInteger keyboardHeightDiff = containerFrame.origin.y - originalMessageOrigin;
+//
+//    UIEdgeInsets contentInsets = self.chatTableView.contentInset;
+//
+//    // On ios 7 landscape x == ios 8 landscape y
+//    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0 && UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+//        if(kKeyBoardFrame.origin.x > 0) {
+//            contentInsets.bottom-=keyboardHeightDiff;
+//        }
+//    }
+//    else {
+//        if(kKeyBoardFrame.origin.y > 0) {
+//            contentInsets.bottom-=keyboardHeightDiff;
+//        }
+//    }
+//    
+//    self.bottomMessageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    self.bottomMessageView.translatesAutoresizingMaskIntoConstraints = YES;
+//
+//    self.chatTableView.contentInset = contentInsets;
+//    self.chatTableView.scrollIndicatorInsets = contentInsets;
+//    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:[duration doubleValue]];
+//    [UIView setAnimationCurve:[curve intValue]];
+//
+//    // set views with new info
+//    self.bottomMessageView.frame = containerFrame;
+//
+//    [UIView commitAnimations];
+//    [self scrollDownToLastMessage:YES];
+//    
+//}
 
 
 #pragma mark - Ticket fetch and update functions
