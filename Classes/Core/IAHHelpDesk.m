@@ -81,7 +81,7 @@
 
     self.localPushToken = string;
     if (self.gear!= nil)
-        [[IAHTicketSource instance] setPushToken:pushToken];
+        [[IAHTicketSource instance] setPushToken:string];
 }
 
 - (void)setUserSecret:(NSString *)userSecret {
