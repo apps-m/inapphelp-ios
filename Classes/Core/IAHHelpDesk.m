@@ -130,7 +130,7 @@
 
 - (void)showConversation:(UIViewController*)parentController {
     IAHIssueDetailViewController* issueDetailController;
-    UIViewController* topAlmost = parentController;
+    UIViewController* topAlmost = [self topMostController];
     
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UIStoryboard* helpStoryboard = [UIStoryboard storyboardWithName:@"InapphelpStoryboard-iPad" bundle:[NSBundle mainBundle]];
