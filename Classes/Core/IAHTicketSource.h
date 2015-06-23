@@ -38,7 +38,7 @@
  Note: You should call this on viewDidAppear or anytime you need fresh data from server.
  */
 - (void)prepareTicket;
-- (NSInteger)updateCount;
+- (NSUInteger)updateCount;
 - (IAHUpdate *)updateAtPosition:(NSInteger)position;
 - (void)prepareUpdate:(IAHUser *)user success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 

@@ -84,6 +84,13 @@
         [[IAHTicketSource instance] setPushToken:string];
 }
 
+//Cordova
+- (void)setPushTokenString:(NSString *)pushToken {
+    self.localPushToken = pushToken;
+    if (self.gear!= nil)
+        [[IAHTicketSource instance] setPushToken:pushToken];
+}
+
 - (void)setUserSecret:(NSString *)userSecret {
     self.localUserSecret = userSecret;
     if (self.gear!= nil)
@@ -118,7 +125,7 @@
     return self.company;
 }
 /**
-    start HelpStackController for given gear.
+    start Inapphelp for given gear.
  */
 - (void)showHelp:(UIViewController*)parentController {
     [self showHelp:parentController completion:nil];

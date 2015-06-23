@@ -148,8 +148,8 @@
     }];
 }
 
-- (NSInteger)updateCount {
-    return [self.updateArray count];
+- (NSUInteger)updateCount {
+    return self.updateArray.count;
 }
 
 - (IAHUpdate *)updateAtPosition:(NSInteger)position {
