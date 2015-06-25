@@ -44,15 +44,36 @@
     return timeString;
 }
 
-+ (NSString*)deviceInformation
++ (NSMutableDictionary*)deviceInformation
 {
-    NSString* deviceModel = [[UIDevice currentDevice] model];
-    NSString* osVersion = [[UIDevice currentDevice] systemVersion];
-    NSString* bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-    NSString* bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSMutableDictionary* deviceInfo = [[NSMutableDictionary alloc] init];
     
-    NSString* deviceInformation = [NSString stringWithFormat:@"Device:%@,iOS:%@,App information:%@,Version:%@", deviceModel, osVersion, bundleName, bundleVersion];
+    [deviceInfo setValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"] forKey:@"Application id"];
+    [deviceInfo setValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] forKey:@"Application version"];
+
+    [deviceInfo setValue:[[UIDevice currentDevice] model] forKey:@"Device"];
+    [deviceInfo setValue:[[UIDevice currentDevice] systemVersion] forKey:@"Os"];
+    [deviceInfo setValue:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:@"Language"];
     
-    return deviceInformation;
+    [deviceInfo setValue:[self getFreeSpace] forKey:@"Free space"];
+
+    return deviceInfo;
+}
+
++ (NSString*) getFreeSpace {
+    NSString* freeSpace = @"Unknown";
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
+    
+    if (dictionary) {
+        NSNumber *fileSystemFreeSizeInBytes = [dictionary objectForKey: NSFileSystemFreeSize];
+        
+        int mb = (int)([fileSystemFreeSizeInBytes longLongValue]/(1024 * 1024));
+        freeSpace  = [NSString stringWithFormat:@"%.02f GB", ((float) mb)/1024.f];
+    } else {
+        //Handle error
+    }  
+    return freeSpace;
 }
 @end

@@ -135,7 +135,23 @@
     [parameters setObject:self.app_id forKey:@"appid"];
     [parameters setObject:self.app_key forKey:@"appkey"];
     [parameters setObject:reply.content forKey:@"text"];
-    [parameters setObject:[IAHUtility deviceInformation] forKey:@"deviceinfo"];
+    
+    
+    NSMutableDictionary* deviceParam = [IAHUtility deviceInformation];
+    [self.networkManager.reachabilityManager startMonitoring];
+
+    
+    if (self.networkManager.reachabilityManager.isReachable){
+        if (self.networkManager.reachabilityManager.isReachableViaWiFi) {
+            [deviceParam setObject:@"WiFi" forKey:@"Network"];
+        } else {
+            [deviceParam setObject:@"3G" forKey:@"Network"];
+        }
+    } else {
+        [deviceParam setObject:@"Unknown" forKey:@"Network"];
+    }
+
+    [parameters setObject:[IAHUtility deviceInformation] forKey:@"info"];
     
     if (user.userSecret != nil) {
         [parameters setObject:user.userSecret forKey:@"secretkey"];

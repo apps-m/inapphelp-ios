@@ -6,6 +6,6 @@
 
 + (NSString*) stringFortimeSinceDateFull: (NSDate*) date;
 
-+ (NSString*) deviceInformation;
++ (NSMutableDictionary*) deviceInformation;
 
 @end
