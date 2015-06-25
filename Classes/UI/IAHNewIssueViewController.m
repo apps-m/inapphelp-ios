@@ -29,17 +29,21 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "IAHUtility.h"
 #import "UIImage+Extended.h"
+#import "IAHActivityIndicatorView.h"
 
 @interface IAHNewIssueViewController ()<UITextFieldDelegate, UITextViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate> {
     IAHTextViewInternal* messageField;
     UIButton *attachmentImageBtn;
     UIBarButtonItem* submitBarItem;
+    UIBarButtonItem* loadingBarItem;
 }
 
 @property (nonatomic, strong) UIView *messageAttachmentView;
 @property (nonatomic, strong) UIButton *addAttachment;
 @property (nonatomic, strong) NSMutableArray *attachments;
 @property UIStatusBarStyle currentStatusBarStyle;
+@property(nonatomic, strong) IAHActivityIndicatorView *loadingView;
+
 
 @end
 
@@ -52,6 +56,10 @@
     submitBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStyleDone target:self action:@selector(submitPressed:)];
     self.navigationItem.rightBarButtonItem = submitBarItem;
     
+    
+    self.loadingView = [[IAHActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20.0, 20.0)];
+    loadingBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.loadingView];
+
     IAHAppearance* appearance = [[IAHHelpDesk instance] appearance];
     self.view.backgroundColor = [appearance getBackgroundColor];
 
@@ -91,19 +99,42 @@
     }
 }
 
+- (void)startLoadingAnimation
+{
+    self.loadingView.hidden = NO;
+    [self.loadingView startAnimating];
+    self.navigationItem.rightBarButtonItem = loadingBarItem;
+}
+
+- (void)stopLoadingAnimation
+{
+    [self.loadingView stopAnimating];
+    self.loadingView.hidden = YES;
+    self.navigationItem.rightBarButtonItem = submitBarItem;
+}
+
 - (IBAction)submitPressed:(id)sender {
     //Validate for name, email, subject and message
 
     UIBarButtonItem* submitButton = sender;
     if([self checkValidity]) {
         submitButton.enabled = NO;
-        
         self.createNewTicket.content = messageField.text;
         self.createNewTicket.attachments = self.attachments;
-        
-        [self.delegate onNewIssueRequested:self.createNewTicket];
 
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self startLoadingAnimation];
+        [self.ticketSource createNewTicket:self.createNewTicket success:^{
+            [self stopLoadingAnimation];
+            submitButton.enabled = YES;
+            [self.delegate onNewIssueSubmited:self.createNewTicket];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } failure:^(NSError* e){
+            [self stopLoadingAnimation];
+            submitButton.enabled = YES;
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Oops! Some error." message:@"There was some error in reporting your issue. Is your internet ON? Can you try after sometime?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView show];
+            
+        }];
     }
 }
 

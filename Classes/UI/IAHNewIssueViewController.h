@@ -39,6 +39,6 @@
 
 @protocol HSNewIssueViewControllerDelegate <NSObject>
 
-- (void)onNewIssueRequested:(IAHTicketReply *)createNewTicket;
+- (void)onNewIssueSubmited:(IAHTicketReply *)createdicket;
 
 @end

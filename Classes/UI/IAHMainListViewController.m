@@ -307,12 +307,7 @@ BOOL finishedLoadingKB = NO;
 }
 
 - (void)reportIssue{
-    if([self.ticketSource isTicketProtocolImplemented]) {
-        [self startReportAnIssue];
-    }
-    else {
-        [self startMailClient];
-    }
+    [self startReportAnIssue];
 }
 
 - (void) startReportAnIssue {
@@ -386,55 +381,12 @@ BOOL finishedLoadingKB = NO;
     }];
 }
 
-#pragma mark - HSNewIssueViewControllerDelegate
 
-- (void)onNewIssueRequested:(IAHTicketReply *)createNewTicket
+- (void)onNewIssueSubmited:(IAHTicketReply *)createdTicket
 {
-    [self startLoadingAnimation];
     
-    [self.ticketSource createNewTicket:createNewTicket success:^{
-        [self stopLoadingAnimation];
-    } failure:^(NSError* e){
-        [self stopLoadingAnimation];
-        
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Oops! Some error." message:@"There was some error in reporting your issue. Is your internet ON? Can you try after sometime?" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alertView show];
-        
-    }];
-}
-
-#pragma mark - MailClient
-- (void) startMailClient
-{
-    if ([MFMailComposeViewController canSendMail])
-    {
-        MFMailComposeViewController* mailer = [[MFMailComposeViewController alloc] init];
-        mailer.mailComposeDelegate = self;
-        
-        [mailer setToRecipients:@[[self.ticketSource supportEmailAddress]]];
-        [mailer setSubject:@"Help"];
-        [mailer setMessageBody:[IAHUtility deviceInformation] isHTML:NO];
-        
-        mailer.modalPresentationStyle = UIModalPresentationCurrentContext;
-        
-        [self presentViewController:mailer animated:YES completion:nil];
-    } else
-    {
-        
-        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Unable to send email" message:@"Have you configured any email account in your phone? Please check." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-    }
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    if (result == MFMailComposeResultSent) {
-        UIAlertView* mailSentAlert = [[UIAlertView alloc] initWithTitle:@"Mail sent." message:@"Thanks for contacting me. Will reply asap." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [mailSentAlert show];
-    }
-    
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Success." message:@"Your issue has been created and raised!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end
