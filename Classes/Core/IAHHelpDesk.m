@@ -175,7 +175,6 @@
     }
     
     if (launched) {
-        [self showConversation:viewController];
         [NSTimer scheduledTimerWithTimeInterval:1
                                          target:self
                                        selector:@selector(showConversationFromTimer:)
