@@ -137,21 +137,19 @@
     [parameters setObject:reply.content forKey:@"text"];
     
     
-    NSMutableDictionary* deviceParam = [IAHUtility deviceInformation];
+    NSMutableArray* deviceInfo = [IAHUtility deviceInformation];
     [self.networkManager.reachabilityManager startMonitoring];
 
-    
+    NSString* networkType = @"Unknown";
     if (self.networkManager.reachabilityManager.isReachable){
         if (self.networkManager.reachabilityManager.isReachableViaWiFi) {
-            [deviceParam setObject:@"WiFi" forKey:@"Network"];
+            networkType = @"WiFi";
         } else {
-            [deviceParam setObject:@"3G" forKey:@"Network"];
+            networkType = @"3G";
         }
-    } else {
-        [deviceParam setObject:@"Unknown" forKey:@"Network"];
     }
-
-    [parameters setObject:[IAHUtility deviceInformation] forKey:@"info"];
+    [deviceInfo addObject:@{@"k":@"Network", @"v":networkType, @"t":@"Device"}];
+    
     
     if (user.userSecret != nil) {
         [parameters setObject:user.userSecret forKey:@"secretkey"];
@@ -168,8 +166,13 @@
         [parameters setObject:user.pushToken forKey:@"pushtoken"];
     }
     
+    int counter = 0;
+    for (NSDictionary *arrayItem in deviceInfo) {
+        [parameters setObject:arrayItem forKey:[NSString stringWithFormat:@"info[%d]", counter]];
+        counter++;
+    }
+
     NSArray *attachments = reply.attachments;
-    
     [self.networkManager POST:@"api/chat/submit" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
         if(attachments != nil && (attachments.count > 0)) {
             for(IAHAttachment *attachment in attachments){

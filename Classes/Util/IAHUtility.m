@@ -44,18 +44,18 @@
     return timeString;
 }
 
-+ (NSMutableDictionary*)deviceInformation
++ (NSMutableArray*)deviceInformation
 {
-    NSMutableDictionary* deviceInfo = [[NSMutableDictionary alloc] init];
     
-    [deviceInfo setValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"] forKey:@"Application id"];
-    [deviceInfo setValue:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] forKey:@"Application version"];
-
-    [deviceInfo setValue:[[UIDevice currentDevice] model] forKey:@"Device"];
-    [deviceInfo setValue:[[UIDevice currentDevice] systemVersion] forKey:@"Os"];
-    [deviceInfo setValue:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:@"Language"];
+    NSMutableArray* deviceInfo = [[NSMutableArray alloc] init];
     
-    [deviceInfo setValue:[self getFreeSpace] forKey:@"Free space"];
+    [deviceInfo addObject:@{@"k":@"Application id", @"v": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"], @"t":@"Application"}];
+    [deviceInfo addObject:@{@"k":@"Application version", @"v": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"], @"t":@"Application"}];
+    
+    [deviceInfo addObject:@{@"k":@"Device", @"v": [[UIDevice currentDevice] model], @"t":@"Device"}];
+    [deviceInfo addObject:@{@"k":@"OS", @"v": [[UIDevice currentDevice] systemVersion], @"t":@"Device"}];
+    [deviceInfo addObject:@{@"k":@"Language", @"v": [[NSLocale preferredLanguages] objectAtIndex:0], @"t":@"Device"}];
+    [deviceInfo addObject:@{@"k":@"Free space", @"v": [self getFreeSpace], @"t":@"Device"}];
 
     return deviceInfo;
 }
