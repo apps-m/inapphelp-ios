@@ -543,6 +543,13 @@
                                     <outlet property="delegate" destination="Gtj-gW-pLJ" id="lBR-sa-0OR"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Zs-2i-DGZ" customClass="IAHActivityIndicatorView">
+                                <rect key="frame" x="178" y="270" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="hTG-iv-gdC"/>
+                                    <constraint firstAttribute="width" constant="20" id="vCh-ob-aDi"/>
+                                </constraints>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxc-PN-oSd" userLabel="MessageView">
                                 <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <subviews>
@@ -602,13 +609,6 @@
                                     <constraint firstItem="caF-bA-v3Y" firstAttribute="top" secondItem="vxc-PN-oSd" secondAttribute="top" constant="5" id="zPt-ry-Qmw"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="7Zs-2i-DGZ" customClass="IAHActivityIndicatorView">
-                                <rect key="frame" x="178" y="270" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="hTG-iv-gdC"/>
-                                    <constraint firstAttribute="width" constant="20" id="vCh-ob-aDi"/>
-                                </constraints>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -617,7 +617,7 @@
                             <constraint firstItem="TW8-Xg-jkl" firstAttribute="top" secondItem="lav-4X-kkH" secondAttribute="bottom" id="JQL-H1-vj6"/>
                             <constraint firstItem="TW8-Xg-jkl" firstAttribute="leading" secondItem="pZG-d9-Lt0" secondAttribute="leading" id="Mz7-0B-mFH"/>
                             <constraint firstItem="DvT-WW-Jzi" firstAttribute="top" secondItem="TW8-Xg-jkl" secondAttribute="bottom" constant="44" id="OHo-lR-18Q"/>
-                            <constraint firstAttribute="trailing" secondItem="vxc-PN-oSd" secondAttribute="trailing" id="Y2Z-hE-WGR"/>
+                            <constraint firstAttribute="trailing" secondItem="vxc-PN-oSd" secondAttribute="trailing" priority="999" id="Y2Z-hE-WGR"/>
                             <constraint firstItem="7Zs-2i-DGZ" firstAttribute="centerY" secondItem="TW8-Xg-jkl" secondAttribute="centerY" id="ZOC-Sg-p5c"/>
                             <constraint firstItem="DvT-WW-Jzi" firstAttribute="top" secondItem="vxc-PN-oSd" secondAttribute="bottom" priority="900" id="d4H-zu-c8U"/>
                             <constraint firstAttribute="trailing" secondItem="TW8-Xg-jkl" secondAttribute="trailing" id="dqh-dJ-nSD"/>

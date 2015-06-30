@@ -339,10 +339,15 @@
 
     UIImage* img = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientationAndSize];
     NSData *data = UIImagePNGRepresentation(img);
+    if ([data length] > 1024*1024){
+        data = UIImageJPEGRepresentation(img, 70.f);
+        attachment.mimeType = @"image/jpeg";
+    } else {
+        attachment.mimeType = @"image/png";
+    }
     attachment.attachmentData = data;
     attachment.fileName = @"attachment";
     attachment.attachmentImage = img;
-    attachment.mimeType = @"image/png";
     [self.attachments addObject:attachment];
     
     [self refreshAttachmentsImage];

@@ -73,7 +73,7 @@
         navbar.items = [NSArray arrayWithObjects: navigItem,nil];
         [self.view addSubview:navbar];
     }
-    [self addMessageView];
+    
 
     /**
         Single tapping anywhere on the chat table view to hide the keyboard
@@ -90,7 +90,8 @@
     [[IAHHelpDesk instance] setConversationLaunched:YES];
 }
 
--(void)viewDidAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated {
+    [self addMessageView];
     [super viewDidAppear:animated];
     if(self.enteredMsg){
         self.messageText.text = self.enteredMsg;
@@ -115,7 +116,7 @@
 #pragma marks - View populating methods
 
 - (void)addMessageView {
-    if(!self.messageText){
+    if(!self.messageText) {
         self.messageText = [[IAHGrowingTextView alloc] initWithFrame:CGRectMake(self.messageTextSuperView.frame.origin.x, self.messageTextSuperView.frame.origin.y, self.messageTextSuperView.frame.size.width, self.messageTextSuperView.frame.size.height)];
         self.messageText.editable = YES;
     }else{
@@ -150,6 +151,7 @@
     [self.bottomMessageView addSubview:self.messageText];
     
     self.sendButton.titleLabel.textColor = [UIColor darkGrayColor];
+    [self.view layoutSubviews];
 }
 
 /**

@@ -100,12 +100,12 @@
     CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
     UIImage *img;
     CGSize currentSize = CGSizeMake(self.size.width, self.size.height);
-    if (currentSize.width > 2014 || currentSize.height > 2014) {
+    if (currentSize.width > 1024 || currentSize.height > 1024) {
         CGSize newSize;
         if (currentSize.width > currentSize.height) {
-            newSize = CGSizeMake(roundf((currentSize.width*(2048/currentSize.width))), roundf((currentSize.height*(2048/currentSize.width))));
+            newSize = CGSizeMake(roundf((currentSize.width*(1024/currentSize.width))), roundf((currentSize.height*(1024/currentSize.width))));
         } else {
-            newSize = CGSizeMake(roundf((currentSize.width*(2048/currentSize.height))), roundf((currentSize.height*(2048/currentSize.height))));
+            newSize = CGSizeMake(roundf((currentSize.width*(1024/currentSize.height))), roundf((currentSize.height*(1024/currentSize.height))));
         }
         img = [[UIImage imageWithCGImage:cgimg] scaleToSize:newSize];
     } else {
@@ -133,7 +133,7 @@
     else
         CGContextDrawImage(context, CGRectMake(0, 0, size.width, size.height), self.CGImage);
     
-    CGImageRef scaledImage=CGBitmapContextCreateImage(context);
+    CGImageRef scaledImage = CGBitmapContextCreateImage(context);
     
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
