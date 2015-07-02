@@ -183,7 +183,6 @@ BOOL finishedLoadingKB = NO;
         return cell;
         
     } else {
-        
         static NSString *CellIdentifier = @"HelpCell";
         static NSString *ReportCellIdentifier = @"Contact support";
         if (indexPath.section == 2) {
@@ -191,8 +190,11 @@ BOOL finishedLoadingKB = NO;
             if (cell == nil) {
                 cell = [[IAHReportIssueCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReportCellIdentifier];
             }
-            
-            cell.textLabel.text = @"Contact support";
+            if ([self.ticketSource shouldShowUserDetailsFormWhenCreatingTicket])
+                cell.textLabel.text = @"Create Issue";
+            else
+                cell.textLabel.text = @"View Issue";
+
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             
             return cell;
@@ -384,6 +386,8 @@ BOOL finishedLoadingKB = NO;
 
 - (void)onNewIssueSubmited:(IAHTicketReply *)createdTicket
 {
+    NSIndexSet *sectionSet = [NSIndexSet indexSetWithIndex:2];
+    [self.tableView reloadSections:sectionSet withRowAnimation:UITableViewRowAnimationNone];
     
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Success." message:@"Your issue has been created and raised!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alertView show];

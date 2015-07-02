@@ -38,7 +38,7 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         [[[IAHHelpDesk instance] appearance] customizeTextLabel:self.textLabel];
-        self.textLabel.textColor = [UIColor colorWithRed:233.0/255.0f green:76.0/255.0f blue:67.0/255.0f alpha:1.0];
+        self.textLabel.textColor = [UIColor colorWithRed:33.0/255.0f green:76.0/255.0f blue:255.0/255.0f alpha:1.0];
         self.selectionStyle = UITableViewCellSelectionStyleGray;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -53,7 +53,7 @@
     if(self) {
         self.backgroundColor = [UIColor whiteColor];
         [[[IAHHelpDesk instance] appearance] customizeTextLabel:self.textLabel];
-        self.textLabel.textColor = [UIColor colorWithRed:233.0/255.0f green:76.0/255.0f blue:67.0/255.0f alpha:1.0];
+        self.textLabel.textColor = [UIColor colorWithRed:33.0/255.0f green:76.0/255.0f blue:255.0/255.0f alpha:1.0];
         self.selectionStyle = UITableViewCellSelectionStyleGray;
         self.textLabel.textAlignment = NSTextAlignmentCenter;
         self.selectionStyle = UITableViewCellSelectionStyleGray;
