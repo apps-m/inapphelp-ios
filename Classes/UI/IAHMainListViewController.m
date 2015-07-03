@@ -191,9 +191,9 @@ BOOL finishedLoadingKB = NO;
                 cell = [[IAHReportIssueCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ReportCellIdentifier];
             }
             if ([self.ticketSource shouldShowUserDetailsFormWhenCreatingTicket])
-                cell.textLabel.text = @"Create Issue";
+                cell.textLabel.text = @"Create ticket";
             else
-                cell.textLabel.text = @"View Issue";
+                cell.textLabel.text = @"View ticket";
 
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             
